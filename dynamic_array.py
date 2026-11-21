@@ -1,6 +1,6 @@
 # dynamic_array.py
 # A dynamic array using Python's array module
-# Modified by: 
+# Modified by: Miles Smith
 
 from array import array
 from collections.abc import MutableSequence
@@ -35,7 +35,7 @@ class DynamicArray(MutableSequence):
             raise IndexError("Index out of range")
         self._array[index] = value
 
-        def __delitem__(self, index):
+    def __delitem__(self, index):
         if index < 0:
             index += self._length
         if index < 0 or index >= self._length:
