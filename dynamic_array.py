@@ -36,12 +36,27 @@ class DynamicArray(MutableSequence):
         self._array[index] = value
 
     def __delitem__(self, index):
-        # YOUR CODE HERE
-        pass
+       if index < 0:
+            index += self._length
+        if index < 0 or index >= self._length:
+            raise IndexError("Index out of range")
+        for i in range(index, self._length - 1):
+            self._array[i] = self._array[i + 1]
+        self._length -= 1
 
     def insert(self, index, value):
-        # YOUR CODE HERE
-        pass
+       if index < 0:
+            index += self._length
+            if index < 0:
+                index = 0
+        if index > self._length:
+            index = self._length
+        if self._length == self._capacity:
+            self._resize()
+        for i in range(self._length, index, -1):
+            self._array[i] = self._array[i - 1]
+        self._array[index] = value
+        self._length += 1
 
     def _resize(self):
         # YOUR CODE HERE
