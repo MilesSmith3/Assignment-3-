@@ -59,8 +59,11 @@ class DynamicArray(MutableSequence):
         self._length += 1
 
     def _resize(self):
-        # YOUR CODE HERE
-        pass
+        self._capacity *= DynamicArray.GROWTH_FACTOR
+        new_array = array('i', [0] * self._capacity)
+        for i in range(self._length):
+            new_array[i] = self._array[i]
+        self._array = new_array
 
     def __repr__(self):
         return "DynamicArray([" + ", ".join(repr(self._array[i]) for i in range(self._length)) + "])"
